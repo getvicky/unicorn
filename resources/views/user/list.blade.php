@@ -123,10 +123,11 @@
 											<th title="Field #4" class="m-datatable__cell m-datatable__cell--sort" data-field="Email"><span style="width: 150px;">Email</span></th>
 											<th title="Field #5" class="m-datatable__cell m-datatable__cell--sort" data-field="Address"><span style="width: 110px;">Address</span></th>
 											<th title="Field #7" class="m-datatable__cell m-datatable__cell--sort" data-field="Created On"><span style="width: 110px;">Created On</span></th>
-											<th title="Field #8" class="m-datatable__cell m-datatable__cell--sort" data-field="Last Login"><span style="width: 110px;">Last Login</span></th>
+											<!-- <th title="Field #8" class="m-datatable__cell m-datatable__cell--sort" data-field="Last Login"><span style="width: 110px;">Last Login</span></th> -->
 											<th title="Field #9" class="m-datatable__cell m-datatable__cell--sort" data-field="Status"><span style="width: 110px;">Status</span></th>
 											<th title="Field #10" class="m-datatable__cell m-datatable__cell--sort" data-field="Type"><span style="width: 110px;">Type</span></th>
 											<th title="Field #10" class="m-datatable__cell m-datatable__cell--sort" data-field="Department"><span style="width: 110px;">Department</span></th>
+											<th title="Field #10" class="m-datatable__cell m-datatable__cell--sort" data-field="Department"><span style="width: 110px;">Action</span></th>
 										</tr>
 									</thead>
 									<tbody class="m-datatable__body" style="">
@@ -153,13 +154,13 @@
 											<td data-field="Created On" class="m-datatable__cell"><span style="width: 110px;">
 												{{ Carbon\Carbon::parse($list->created_at)->format('d/m/Y') }}
 											</span></td>
-											<td data-field="Last Login" class="m-datatable__cell"><span style="width: 110px;">
+											<!-- <td data-field="Last Login" class="m-datatable__cell"><span style="width: 110px;">
 												@if($list->last_login != '')
 													{{ $list->last_login }}
 												@else
 													-
 												@endif
-											</span></td>
+											</span></td> -->
 											<td data-field="Status" class="m-datatable__cell"><span style="width: 110px;"><span class="m-badge  m-badge--info m-badge--wide">
 												@if($list->active == 1)
 													Active
@@ -183,6 +184,9 @@
 												@else
 													-
 												@endif
+											</span></td>
+											<td data-field="Department" class="m-datatable__cell"><span style="width: 110px;">
+												<a onclick="return confirm('Are you sure you want to delete?');" href="{{ url('user/delete') }}/{{ $list->id }}" class="btn btn-danger"><i class="fa fa-trash"></i></a> | <a href="{{ url('user/edit') }}/{{ $list->id }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
 											</span></td>
 										</tr>
 										<?php $k++; ?>

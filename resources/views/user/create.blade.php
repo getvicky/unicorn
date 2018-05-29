@@ -33,6 +33,9 @@
 									<input type="text" class="form-control m-input" placeholder="Enter FirstName" name="first_name">
 									
 								</div>
+								@if ($errors->has('first_name'))
+							    <div class="text-danger">{{ $errors->first('first_name') }}</div>
+								@endif
 							</div>
 							<div class="col-lg-4">
 								<label>
@@ -46,6 +49,9 @@
 									</div>
 									<input type="text" class="form-control m-input" placeholder="Enter LastName" name="last_name">
 								</div>
+								@if ($errors->has('last_name'))
+							    <div class="text-danger">{{ $errors->first('last_name') }}</div>
+								@endif
 							</div>
 
 							<div class="col-lg-4">
@@ -53,6 +59,9 @@
 									Email:
 								</label>
 								<input type="email" class="form-control m-input" placeholder="Enter email" name="user_email">
+								@if ($errors->has('user_email'))
+							    <div class="text-danger">{{ $errors->first('user_email') }}</div>
+								@endif
 							</div>
 							
 						</div>
@@ -162,12 +171,12 @@
 								</span>
 							</div>
 
-							<div class="col-lg-4">
+							<!-- <div class="col-lg-4">
 								<label class="">
 									Date OF Joining:
 								</label>
 								<input type="text" class="form-control m-input" placeholder="Date OF Joining" name="joining_date">
-							</div>
+							</div> -->
 							
 							<!-- <div class="col-lg-4">
 								<label class="">
@@ -189,7 +198,19 @@
 									Please select Type of user
 								</span>
 							</div> -->
+							<div class="col-lg-4">
+								<label class="">
+									Department:
+								</label>
+								<select class="form-control m-input" name="department">
+                                    <option value="">--Select Department--</option>
+                                    <option value="MIS">MIS</option>
+                                    <option value="HR">HR</option>
+                                    <option value="Technical">Technical</option>
+                                    <option value="Sales">Sales</option>
+                                </select>
 
+                            </div>
 							
 						</div>
 						<div class="form-group m-form__group row">
@@ -240,19 +261,19 @@
 
                             </div>
 
-                            <div class="col-lg-4">
-								<label class="">
-									Department:
-								</label>
-								<select class="form-control m-input" name="department">
+                            <!-- <div class="col-lg-4">
+                            								<label class="">
+                            									Department:
+                            								</label>
+                            								<select class="form-control m-input" name="department">
                                     <option value="">--Select Department--</option>
                                     <option value="MIS">MIS</option>
                                     <option value="HR">HR</option>
                                     <option value="Technical">Technical</option>
                                     <option value="Sales">Sales</option>
                                 </select>
-
-                            </div>
+                            
+                            </div> -->
 						</div>
 
 						<div class="form-group m-form__group row">
@@ -260,7 +281,7 @@
 								<label class="">
 									Upload Document:
 								</label>
-								<input type="file" class="form-control" id="images" name="images[]" multiple/>
+								<input type="file" class="form-control" id="images" name="attachment[]" multiple/>
 							</div>
 
 							<div class="col-lg-4">
@@ -275,7 +296,9 @@
 										</span>
 									</span>
 								</div>
-								
+								@if ($errors->has('password'))
+							    <div class="text-danger">{{ $errors->first('password') }}</div>
+								@endif
 							</div>
 
 							<div class="col-lg-4">
@@ -290,7 +313,9 @@
 										</span>
 									</span>
 								</div>
-								
+								@if ($errors->has('confirm_password'))
+							    <div class="text-danger">{{ $errors->first('confirm_password') }}</div>
+								@endif
 							</div>
 						</div>
 					</div>

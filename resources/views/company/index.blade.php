@@ -115,11 +115,11 @@
 									</div>
 								</div>
 								<div class="col-xl-4 order-1 order-xl-2 m--align-right">
-									<a href="{{ url('client/new') }}" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+									<a href="{{ url('company/new') }}" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
 										<span>
 											<i class="la la-user"></i>
 											<span>
-												New Client
+												New Company
 											</span>
 										</span>
 									</a>
@@ -132,57 +132,33 @@
 						<div class="m-datatable m-datatable--default m-datatable--brand m-datatable--loaded"><table class="m-datatable__table" id="html_table" style="display: block; min-height: 300px; overflow-x: auto;" width="100%">
 							<thead class="m-datatable__head">
 								<tr class="m-datatable__row" style="left: 0px;">
-									<th title="Field #1" class="m-datatable__cell m-datatable__cell--sort" data-field="S.No."><span style="width: 50px;">S.No.</span></th>
-									<th title="Field #2" class="m-datatable__cell m-datatable__cell--sort" data-field="Name"><span style="width: 110px;">Name</span></th>
-									<th title="Field #3" class="m-datatable__cell m-datatable__cell--sort" data-field="Contact"><span style="width: 110px;">Contact</span></th>
-									<th title="Field #4" class="m-datatable__cell m-datatable__cell--sort" data-field="Email"><span style="width: 150px;">Email</span></th>
-									<th title="Field #5" class="m-datatable__cell m-datatable__cell--sort" data-field="Address"><span style="width: 130px;">Address</span></th>
-									<th title="Field #7" class="m-datatable__cell m-datatable__cell--sort" data-field="Created On"><span style="width: 130px;">Created On</span></th>
-									<!-- <th title="Field #8" class="m-datatable__cell m-datatable__cell--sort" data-field="Created By"><span style="width: 110px;">Created By</span></th> -->
-									<th title="Field #9" class="m-datatable__cell m-datatable__cell--sort" data-field="Status"><span style="width: 110px;">Status</span></th>
-									<!-- <th title="Field #11" class="m-datatable__cell m-datatable__cell--sort" data-field="Department"><span style="width: 110px;">Under Department</span></th> -->
-									<th title="Field #12" class="m-datatable__cell m-datatable__cell--sort" data-field="Action"><span style="width: 110px;">Action</span></th>
+									<th title="Field #1" class="m-datatable__cell m-datatable__cell--sort" data-field="S.No."><span style="width: 200px;">S.No.</span></th>
+									<th title="Field #2" class="m-datatable__cell m-datatable__cell--sort" data-field="S.No."><span style="width: 350px;">Company Name</span></th>
+									<th title="Field #3" class="m-datatable__cell m-datatable__cell--sort" data-field="Created On"><span style="width: 290px;">Created On</span></th>
+									<th title="Field #4" class="m-datatable__cell m-datatable__cell--sort" data-field="Action"><span style="width: 250px;">Action</span></th>
 								</tr>
 							</thead>
 							<tbody class="m-datatable__body" style="">
-							<?php $k = 1; ?>
-							@foreach($customers as $customer)
-								<tr data-row="0" class="m-datatable__row" style="left: 0px;">
-									<td data-field="S.No." class="m-datatable__cell"><span style="width: 50px;">{{ $k }}</span></td>
-									<td data-field="Name" class="m-datatable__cell"><span style="width: 110px;">
-										{{ $customer->first_name }} {{ $customer->last_name }}
-									</span></td>
-									<td data-field="Contact" class="m-datatable__cell"><span style="width: 110px;">
-										{{ $customer->mobile }}
-									</span></td>
-									<td data-field="Email" class="m-datatable__cell"><span style="width: 150px;">
-										{{ $customer->email }}
-									</span></td>
-									<td data-field="Address" class="m-datatable__cell"><span style="width: 130px;">
-										{{ $customer->address }}
-									</span></td>
-									<td data-field="Created On" class="m-datatable__cell"><span style="width: 130px;">
-										{{ $customer->created_at }}
-									</span></td>
-									<!-- <td data-field="Last Login" class="m-datatable__cell"><span style="width: 110px;">John</span></td> -->
-									<td data-field="Status" class="m-datatable__cell"><span style="width: 110px;"><span class="m-badge  m-badge--info m-badge--wide">
-										@if($customer->active == 1)
-											Active
-										@else
-											Inactive
-										@endif
-									</span></span></td>
-									<!-- <td data-field="Type" class="m-datatable__cell"><span style="width: 110px;"><span class="m-badge m-badge--danger m-badge--dot"></span>&nbsp;
-										<span class="m--font-bold m--font-danger">Sales</span>
+								<?php $k = 1; ?>
+								@foreach($companies as $company)
+									<tr data-row="0" class="m-datatable__row" style="left: 0px;">
+										<td data-field="S.No." class="m-datatable__cell"><span style="width: 200px;">{{ $k }}</span></td>
+
+										<td data-field="Name" class="m-datatable__cell"><span style="width: 350px;">
+											{{ $company->name }}
+										</span></td>
+										
+										<td data-field="Created On" class="m-datatable__cell"><span style="width: 290px;">
+											{{ $company->created_at }}
+										</span></td>
+									
+										<td data-field="Department" class="m-datatable__cell"><span style="width: 250px;">
+											<a onclick="return confirm('Are you sure you want to delete?');" href="{{ url('company/delete') }}/{{ $company->id }}" class="btn btn-danger"><i class="fa fa-trash"></i></a> | <a href="{{ url('company/edit') }}/{{ $company->id }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
 										</span>
-									</td> -->
-									<td data-field="Department" class="m-datatable__cell"><span style="width: 110px;">
-										<a onclick="return confirm('Are you sure you want to delete?');" href="{{ url('client/delete') }}/{{ $customer->id }}" class="btn btn-danger"><i class="fa fa-trash"></i></a> | <a href="{{ url('client/edit') }}/{{ $customer->id }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
-									</span>
-									</td>
-								</tr>
-								<?php $k++; ?>
-							@endforeach
+										</td>
+									</tr>
+									<?php $k++; ?>
+								@endforeach
 							</tbody>
 						</table>
 						<!--end: Datatable -->

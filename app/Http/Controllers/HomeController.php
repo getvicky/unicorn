@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use Auth;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $uid = Auth::user()->id;
+        $user = User::where('id',$uid)->first();
+        $user->last_login = Carbon::now()->format('Y-m-d H:i:s');
+        $user->save();
         return view('home');
     }
 	

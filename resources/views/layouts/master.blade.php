@@ -583,14 +583,14 @@
 															</span>
 														</a>
 													</li>
-													<li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="hover" data-redirect="true" aria-haspopup="true">
+													<!-- <li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="hover" data-redirect="true" aria-haspopup="true">
 														<a  href="{{route('user.edit')}}" class="m-menu__link">
 															<i class="m-menu__link-icon flaticon-users"></i>
 															<span class="m-menu__link-text">
 																Edit User
 															</span>
 														</a>
-													</li>
+													</li> -->
 												</ul>
 											</div>
 										</li>
@@ -626,25 +626,47 @@
 															</span>
 														</a>
 													</li>
-													<li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="hover" data-redirect="true" aria-haspopup="true">
-														<a  href="{{route('client.edit')}}" class="m-menu__link">
-															<i class="m-menu__link-icon flaticon-users"></i>
-															<span class="m-menu__link-text">
-																Edit Cient (Dummy)
+													
+												</ul>
+											</div>
+										</li>
+
+										<li class="m-menu__item  m-menu__item--submenu m-menu__item--rel"  data-menu-submenu-toggle="click" aria-haspopup="true">
+											<a  href="#" class="m-menu__link m-menu__toggle">
+												<span class="m-menu__item-here"></span>
+												<span class="m-menu__link-text">
+													Company
+												</span>
+												<i class="m-menu__hor-arrow la la-angle-down"></i>
+												<i class="m-menu__ver-arrow la la-angle-right"></i>
+											</a>
+											<div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--left">
+												<span class="m-menu__arrow m-menu__arrow--adjust"></span>
+												<ul class="m-menu__subnav">
+													<li class="m-menu__item "  aria-haspopup="true">
+														<a  href="{{route('company.list')}}" class="m-menu__link ">
+															<i class="m-menu__link-icon flaticon-list"></i>
+															<span class="m-menu__link-title">
+																<span class="m-menu__link-wrap">
+																	<span class="m-menu__link-text">
+																		List Company
+																	</span>
+																</span>
 															</span>
 														</a>
 													</li>
 													<li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="hover" data-redirect="true" aria-haspopup="true">
-														<a  href="{{route('client.history')}}" class="m-menu__link">
+														<a  href="{{route('company.new')}}" class="m-menu__link">
 															<i class="m-menu__link-icon flaticon-users"></i>
 															<span class="m-menu__link-text">
-															   Cient History (Dummy)
+																Create New
 															</span>
 														</a>
 													</li>
 												</ul>
 											</div>
 										</li>
+
 										<li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
 											<a  href="#" class="m-menu__link m-menu__toggle">
 												<span class="m-menu__item-here"></span>
@@ -1365,6 +1387,96 @@
 	<script src="{{ asset('assets/app/js/dashboard.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('assets/demo/default/custom/components/datatables/base/html-table.js') }}" type="text/javascript"></script>
 	<!--end::Page Snippets -->
+
+	<script>
+        $('input[name=is_converted]').change(function(){
+			var value = $( 'input[name=is_converted]:checked' ).val();
+			if(value == 1){
+				$('.converted_row').css('display','block');
+				$('.unconverted_row').css('display','none');
+			}else{
+				$('.converted_row').css('display','none');
+				$('.unconverted_row').css('display','block');
+			}
+		});
+
+		$('#payment_method_select').on('change', function() {
+		  var id = this.value;
+		  if(id == 1){
+		  	$('.method_details_echecks').css('display','none');
+		  	$('.method_details_physical_cheque').css('display','none');
+		  	$('.method_details_interac').css('display','none');
+		  	$('.method_details_zille').css('display','none');
+		  	$('.method_details_money_order').css('display','none');
+		  	$('.method_details_cashier_cheque').css('display','none');
+		  	$('.method_details_prepaid_card').css('display','none');
+		  	$('.method_details_credit_card').css('display','block');
+		  }else if(id == 2){
+		  	$('.method_details_physical_cheque').css('display','none');
+		  	$('.method_details_interac').css('display','none');
+		  	$('.method_details_zille').css('display','none');
+		  	$('.method_details_money_order').css('display','none');
+		  	$('.method_details_cashier_cheque').css('display','none');
+		  	$('.method_details_prepaid_card').css('display','none');
+		  	$('.method_details_credit_card').css('display','none');
+		  	$('.method_details_echecks').css('display','block');
+		  }else if(id == 3){
+		  	$('.method_details_echecks').css('display','none');
+		  	$('.method_details_interac').css('display','none');
+		  	$('.method_details_zille').css('display','none');
+		  	$('.method_details_money_order').css('display','none');
+		  	$('.method_details_cashier_cheque').css('display','none');
+		  	$('.method_details_prepaid_card').css('display','none');
+		  	$('.method_details_credit_card').css('display','none');
+		  	$('.method_details_physical_cheque').css('display','block');
+		  }else if(id == 4){
+		  	$('.method_details_echecks').css('display','none');
+		  	$('.method_details_physical_cheque').css('display','none');
+		  	$('.method_details_zille').css('display','none');
+		  	$('.method_details_money_order').css('display','none');
+		  	$('.method_details_cashier_cheque').css('display','none');
+		  	$('.method_details_prepaid_card').css('display','none');
+		  	$('.method_details_credit_card').css('display','none');
+		  	$('.method_details_interac').css('display','block');
+		  }else if(id == 5){
+		  	$('.method_details_echecks').css('display','none');
+		  	$('.method_details_physical_cheque').css('display','none');
+		  	$('.method_details_interac').css('display','none');
+		  	$('.method_details_money_order').css('display','none');
+		  	$('.method_details_cashier_cheque').css('display','none');
+		  	$('.method_details_prepaid_card').css('display','none');
+		  	$('.method_details_credit_card').css('display','none');
+		  	$('.method_details_zille').css('display','block');
+		  }else if(id == 6){
+		  	$('.method_details_echecks').css('display','none');
+		  	$('.method_details_physical_cheque').css('display','none');
+		  	$('.method_details_interac').css('display','none');
+		  	$('.method_details_zille').css('display','none');
+		  	$('.method_details_cashier_cheque').css('display','none');
+		  	$('.method_details_prepaid_card').css('display','none');
+		  	$('.method_details_credit_card').css('display','none');
+		  	$('.method_details_money_order').css('display','block');
+		  }else if(id == 7){
+		  	$('.method_details_echecks').css('display','none');
+		  	$('.method_details_physical_cheque').css('display','none');
+		  	$('.method_details_interac').css('display','none');
+		  	$('.method_details_zille').css('display','none');
+		  	$('.method_details_money_order').css('display','none');
+		  	$('.method_details_prepaid_card').css('display','none');
+		  	$('.method_details_credit_card').css('display','none');
+		  	$('.method_details_cashier_cheque').css('display','block');
+		  }else if(id == 8){
+		  	$('.method_details_echecks').css('display','none');
+		  	$('.method_details_physical_cheque').css('display','none');
+		  	$('.method_details_interac').css('display','none');
+		  	$('.method_details_zille').css('display','none');
+		  	$('.method_details_money_order').css('display','none');
+		  	$('.method_details_cashier_cheque').css('display','none');
+		  	$('.method_details_credit_card').css('display','none');
+		  	$('.method_details_prepaid_card').css('display','block');
+		  }
+		});
+	</script>
 </body>
 <!-- end::Body -->
 </html>
