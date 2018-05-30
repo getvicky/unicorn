@@ -259,7 +259,7 @@
 									<label class="">
 										Payment Type:
 									</label>
-									<select class="form-control m-input" name="agent_id">
+									<select class="form-control m-input" name="payment_type">
 	                                    <option value="">--Select Payment Type--</option>
 	                                    <option value="full">Full</option>
 	                                    <option value="installment">Installment</option>
@@ -271,9 +271,11 @@
 									<label class="">
 										Membership Plans:
 									</label>
-									<select class="form-control m-input" name="agent_id">
+									<select class="form-control m-input" name="membership_plan">
 	                                    <option value="">--Select Membership Plan--</option>
-	                                    
+	                                    @foreach($memberships as $membership)
+											<option value="{{ $membership->id }}">{{ $membership->name }}</option>
+	                                    @endforeach
 	                                    
 	                                </select>
 								</div>
@@ -282,7 +284,7 @@
 									<label class="">
 										Payment Method:
 									</label>
-									<select class="form-control m-input" name="company_name" id="payment_method_select">
+									<select class="form-control m-input" name="payment_method" id="payment_method_select">
 	                                    <option value="">--Select Payment Method--</option>
 	                                    @foreach($methods as $method)
 	                                    	<option value="{{ $method->id }}">{{ ucwords($method->name) }}</option>
@@ -305,7 +307,7 @@
 													<label class="form-control-label">
 														* Cardholder Name:
 													</label>
-													<input name="billing_card_name" class="form-control m-input" placeholder="" value="" aria-describedby="billing_card_name-error" type="text">
+													<input name="credit_billing_card_name" class="form-control m-input" placeholder="" value="" aria-describedby="billing_card_name-error" type="text">
 												</div>
 											</div>
 											<div class="form-group m-form__group row">
@@ -313,7 +315,7 @@
 													<label class="form-control-label">
 														* Card Number:
 													</label>
-													<input name="billing_card_number" class="form-control m-input" placeholder="" value="" aria-describedby="billing_card_number-error" type="text">
+													<input name="credit_billing_card_number" class="form-control m-input" placeholder="" value="" aria-describedby="billing_card_number-error" type="text">
 												</div>
 											</div>
 											<div class="form-group m-form__group row">
@@ -321,7 +323,7 @@
 													<label class="form-control-label">
 														* Exp Month:
 													</label>
-													<select class="form-control m-input" name="billing_card_exp_month" aria-describedby="billing_card_exp_month-error">
+													<select class="form-control m-input" name="credit_billing_card_exp_month" aria-describedby="billing_card_exp_month-error">
 														<option value="">
 															Select
 														</option>
@@ -367,7 +369,7 @@
 													<label class="form-control-label">
 														* Exp Year:
 													</label>
-													<select class="form-control m-input" name="billing_card_exp_year" aria-describedby="billing_card_exp_year-error">
+													<select class="form-control m-input" name="credit_billing_card_exp_year" aria-describedby="billing_card_exp_year-error">
 														<option value="">
 															Select
 														</option>
@@ -398,7 +400,7 @@
 													<label class="form-control-label">
 														* CVV:
 													</label>
-													<input class="form-control m-input" name="billing_card_cvv" placeholder="" value="450" aria-describedby="billing_card_cvv-error" type="number">
+													<input class="form-control m-input" name="credit_billing_card_cvv" placeholder="" value="450" aria-describedby="billing_card_cvv-error" type="number">
 												</div>
 											</div>
 										</div>
@@ -557,7 +559,7 @@
 													<label class="form-control-label">
 														* Cardholder Name:
 													</label>
-													<input name="billing_card_name" class="form-control m-input" placeholder="" value="" aria-describedby="billing_card_name-error" type="text">
+													<input name="prepaid_billing_card_name" class="form-control m-input" placeholder="" value="" aria-describedby="billing_card_name-error" type="text">
 												</div>
 											</div>
 											<div class="form-group m-form__group row">
@@ -565,7 +567,7 @@
 													<label class="form-control-label">
 														* Card Number:
 													</label>
-													<input name="billing_card_number" class="form-control m-input" placeholder="" value="" aria-describedby="billing_card_number-error" type="text">
+													<input name="prepaid_billing_card_number" class="form-control m-input" placeholder="" value="" aria-describedby="billing_card_number-error" type="text">
 												</div>
 											</div>
 											<div class="form-group m-form__group row">
@@ -573,7 +575,7 @@
 													<label class="form-control-label">
 														* Exp Month:
 													</label>
-													<select class="form-control m-input" name="billing_card_exp_month" aria-describedby="billing_card_exp_month-error">
+													<select class="form-control m-input" name="prepaid_billing_card_exp_month" aria-describedby="billing_card_exp_month-error">
 														<option value="">
 															Select
 														</option>
@@ -619,7 +621,7 @@
 													<label class="form-control-label">
 														* Exp Year:
 													</label>
-													<select class="form-control m-input" name="billing_card_exp_year" aria-describedby="billing_card_exp_year-error">
+													<select class="form-control m-input" name="prepaid_billing_card_exp_year" aria-describedby="billing_card_exp_year-error">
 														<option value="">
 															Select
 														</option>
@@ -650,7 +652,7 @@
 													<label class="form-control-label">
 														* CVV:
 													</label>
-													<input class="form-control m-input" name="billing_card_cvv" placeholder="" value="450" aria-describedby="billing_card_cvv-error" type="number">
+													<input class="form-control m-input" name="prepaid_billing_card_cvv" placeholder="" value="450" aria-describedby="billing_card_cvv-error" type="number">
 												</div>
 											</div>
 										</div>
@@ -658,10 +660,129 @@
 								</div>
 							</div>
 							<!--Prepaid card-->
+							<div class="form-group m-form__group row">
+								<div class="col-lg-4">
+									<label class="">
+										Upgrade:
+									</label>
+									<div class="m-radio-inline">
+										<label class="m-radio m-radio--solid">
+											<input type="radio" name="is_upgrade" value="1">
+											Yes
+											<span></span>
+										</label>
+										<label class="m-radio m-radio--solid">
+											<input type="radio" name="is_upgrade" value="0">
+											No
+											<span></span>
+										</label>
+									</div>
+								</div>
 
+							
+								<div class="col-lg-4 upgrade_row" style="display: none;margin-bottom: 25px;">
+									<label class="">
+										Supervisor Id:
+									</label>
+									<select class="form-control m-input" name="supervisor_id">
+	                                    <option value="">--Select--</option>
+	                                    @foreach($supers as $super)
+											<option value="{{ $super->id }}">{{ ucwords($super->name) }}</option>
+	                                    @endforeach
+	                                </select>
+								</div>
+
+								<div class="col-lg-4 upgrade_row" style="display: none;margin-bottom: 25px;">
+									<label class="">
+										Upgrade Amount:
+									</label>
+									<input type="text" class="form-control m-input" placeholder="Upgrade Amount" name="upgrade_amount">
+								</div>
+
+								<div class="col-lg-4">
+									<label class="">
+										Customer Computer Pass:
+									</label>
+									<input type="text" class="form-control m-input" placeholder="Customer Computer Pass" name="computer_pass">
+								</div>
+
+								<div class="col-lg-4">
+									<label class="">
+										No of Devices:
+									</label>
+									<input type="text" class="form-control m-input" placeholder="No of Devices" name="no_of_devices">
+								</div>
+							</div>
+
+							<div class="form-group m-form__group row">
+								<div class="col-lg-4">
+									<label class="">
+										Converted Date:
+									</label>
+									<input type="text" class="form-control m-input datepicker" placeholder="Converted Date" name="converted_date">
+								</div>
+
+								<div class="col-lg-4">
+									<label class="">
+										Select Status:
+									</label>
+									<select class="form-control m-input" name="status_id">
+	                                    <option value="">--Select--</option>
+	                                    @foreach($status as $stat)
+											<option value="{{ $stat->id }}">{{ ucwords($stat->name) }}</option>
+	                                    @endforeach
+	                                </select>
+								</div>
+
+								<div class="col-lg-4">
+									<label class="">
+										Select Timezone:
+									</label>
+									<select class="form-control m-input" name="timezone_id">
+	                                    <option value="">--Select--</option>
+	                                    @foreach($timezones as $timezone)
+											<option value="{{ $timezone->id }}">{{ ucwords($timezone->name) }}</option>
+	                                    @endforeach
+	                                </select>
+								</div>
+
+							</div>
+
+							<div class="form-group m-form__group row">
+								<div class="col-lg-4">
+									<label class="">
+										Type of devices:
+									</label>
+									<input type="text" class="form-control m-input" placeholder="Type of devices" name="type_of_devices">
+								</div>
+
+								<div class="col-lg-4">
+									<label class="">
+										Received Amount:
+									</label>
+									<input type="text" class="form-control m-input" placeholder="Received Amount" name="received_amount">
+								</div>
+
+								<div class="col-lg-4">
+									<label class="">
+										Complete Date:
+									</label>
+									<input type="text" class="form-control m-input datepicker" placeholder="Complete Date" name="complete_date">
+								</div>
+							</div>
+
+							<div class="form-group m-form__group row">
+								<div class="col-lg-6">
+									<label class="">
+										Description:
+									</label>
+									<textarea class="form-control" rows="3" name="description"></textarea>
+								</div>
+							</div>
 						</div>
-
+						<!--end_converted_row-->
 					</div>
+					
 					<div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
 						<div class="m-form__actions m-form__actions--solid">
 							<div class="row">
@@ -670,9 +791,7 @@
 									<button type="submit" class="btn btn-primary">
 										Save
 									</button>
-									<button type="reset" class="btn btn-secondary">
-										Cancel
-									</button>
+									<a href="{{ route('client.list') }}" class="btn btn-secondary">Cancel</a>
 								</div>
 							</div>
 						</div>

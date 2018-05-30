@@ -28,6 +28,7 @@
 		<link href="{{ asset('assets/demo/demo2/base/style.bundle.css') }}" rel="stylesheet" type="text/css" />
 		<!--end::Base Styles -->
 		<link rel="shortcut icon" href="{{ asset('assets/demo/demo2/media/img/logo/favicon.ico') }}" />
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	</head>
 	<!-- end::Head -->
     <!-- end::Body -->
@@ -1387,8 +1388,124 @@
 	<script src="{{ asset('assets/app/js/dashboard.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('assets/demo/default/custom/components/datatables/base/html-table.js') }}" type="text/javascript"></script>
 	<!--end::Page Snippets -->
-
+	  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script>
+	  	$( function() {
+		    $( ".datepicker" ).datepicker();
+
+		    //get converted row id
+		    var editvalue = $( 'input[name=is_edit_converted]:checked' ).val();
+		    if(editvalue == 1){
+		    	$('.converted_edit_row').css('display','block');
+		    }else{
+		    	$('.unconverted_edit_row').css('display','block');
+		    }
+
+		    //get upgrade status
+		    var is_upgrade = $( 'input[name=is_upgrade_edit]:checked' ).val();
+		    if(is_upgrade == 1){
+		    	$('.upgrade_row_edit').css('display','block');
+		    }else{
+		    	$('.upgrade_row_edit').css('display','none');
+		    }
+
+		    //get payment method id
+		    var pay_method = $('#payment_method_edit_select').val();
+		    if(pay_method == 1){
+			  	$('.method_details_echecks_edit').css('display','none');
+			  	$('.method_details_physical_cheque_edit').css('display','none');
+			  	$('.method_details_interac_edit').css('display','none');
+			  	$('.method_details_zille_edit').css('display','none');
+			  	$('.method_details_money_order_edit').css('display','none');
+			  	$('.method_details_cashier_cheque_edit').css('display','none');
+			  	$('.method_details_prepaid_card_edit').css('display','none');
+			  	$('.method_details_credit_card_edit').css('display','block');
+			}else if(pay_method == 2){
+			  	$('.method_details_physical_cheque_edit').css('display','none');
+			  	$('.method_details_interac_edit').css('display','none');
+			  	$('.method_details_zille_edit').css('display','none');
+			  	$('.method_details_money_order_edit').css('display','none');
+			  	$('.method_details_cashier_cheque_edit').css('display','none');
+			  	$('.method_details_prepaid_card_edit').css('display','none');
+			  	$('.method_details_credit_card_edit').css('display','none');
+			  	$('.method_details_echecks_edit').css('display','block');
+		  	}else if(pay_method == 3){
+			  	$('.method_details_echecks_edit').css('display','none');
+			  	$('.method_details_interac_edit').css('display','none');
+			  	$('.method_details_zille_edit').css('display','none');
+			  	$('.method_details_money_order_edit').css('display','none');
+			  	$('.method_details_cashier_cheque_edit').css('display','none');
+			  	$('.method_details_prepaid_card_edit').css('display','none');
+			  	$('.method_details_credit_card_edit').css('display','none');
+			  	$('.method_details_physical_cheque_edit').css('display','block');
+		  	}else if(pay_method == 4){
+			  	$('.method_details_echecks_edit').css('display','none');
+			  	$('.method_details_physical_cheque_edit').css('display','none');
+			  	$('.method_details_zille_edit').css('display','none');
+			  	$('.method_details_money_order_edit').css('display','none');
+			  	$('.method_details_cashier_cheque_edit').css('display','none');
+			  	$('.method_details_prepaid_card_edit').css('display','none');
+			  	$('.method_details_credit_card_edit').css('display','none');
+			  	$('.method_details_interac_edit').css('display','block');
+		  	}else if(pay_method == 5){
+			  	$('.method_details_echecks_edit').css('display','none');
+			  	$('.method_details_physical_cheque_edit').css('display','none');
+			  	$('.method_details_interac_edit').css('display','none');
+			  	$('.method_details_money_order_edit').css('display','none');
+			  	$('.method_details_cashier_cheque_edit').css('display','none');
+			  	$('.method_details_prepaid_card_edit').css('display','none');
+			  	$('.method_details_credit_card_edit').css('display','none');
+			  	$('.method_details_zille_edit').css('display','block');
+		  	}else if(pay_method == 6){
+			  	$('.method_details_echecks_edit').css('display','none');
+			  	$('.method_details_physical_cheque_edit').css('display','none');
+			  	$('.method_details_interac_edit').css('display','none');
+			  	$('.method_details_zille_edit').css('display','none');
+			  	$('.method_details_cashier_cheque_edit').css('display','none');
+			  	$('.method_details_prepaid_card_edit').css('display','none');
+			  	$('.method_details_credit_card_edit').css('display','none');
+			  	$('.method_details_money_order_edit').css('display','block');
+		  	}else if(pay_method == 7){
+			  	$('.method_details_echecks_edit').css('display','none');
+			  	$('.method_details_physical_cheque_edit').css('display','none');
+			  	$('.method_details_interac_edit').css('display','none');
+			  	$('.method_details_zille_edit').css('display','none');
+			  	$('.method_details_money_order_edit').css('display','none');
+			  	$('.method_details_prepaid_card_edit').css('display','none');
+			  	$('.method_details_credit_card_edit').css('display','none');
+			  	$('.method_details_cashier_cheque_edit').css('display','block');
+		  	}else if(pay_method == 8){
+			  	$('.method_details_echecks_edit').css('display','none');
+			  	$('.method_details_physical_cheque_edit').css('display','none');
+			  	$('.method_details_interac_edit').css('display','none');
+			  	$('.method_details_zille_edit').css('display','none');
+			  	$('.method_details_money_order_edit').css('display','none');
+			  	$('.method_details_cashier_cheque_edit').css('display','none');
+			  	$('.method_details_credit_card_edit').css('display','none');
+			  	$('.method_details_prepaid_card_edit').css('display','block');
+		  	}else{
+			  	$('.method_details_echecks_edit').css('display','none');
+			  	$('.method_details_physical_cheque_edit').css('display','none');
+			  	$('.method_details_interac_edit').css('display','none');
+			  	$('.method_details_zille_edit').css('display','none');
+			  	$('.method_details_money_order_edit').css('display','none');
+			  	$('.method_details_cashier_cheque_edit').css('display','none');
+			  	$('.method_details_prepaid_card_edit').css('display','none');
+			  	$('.method_details_credit_card_edit').css('display','none');
+		  	}
+	  	});
+
+	  	$('input[name=is_edit_converted]').change(function(){
+			var value = $( 'input[name=is_edit_converted]:checked' ).val();
+			if(value == 1){
+				$('.converted_edit_row').css('display','block');
+				$('.unconverted_edit_row').css('display','none');
+			}else{
+				$('.converted_edit_row').css('display','none');
+				$('.unconverted_edit_row').css('display','block');
+			}
+		});
+
         $('input[name=is_converted]').change(function(){
 			var value = $( 'input[name=is_converted]:checked' ).val();
 			if(value == 1){
@@ -1397,6 +1514,28 @@
 			}else{
 				$('.converted_row').css('display','none');
 				$('.unconverted_row').css('display','block');
+			}
+		});
+
+		$('input[name=is_upgrade]').change(function(){
+			var value = $( 'input[name=is_upgrade]:checked' ).val();
+			if(value == 1){
+				$('.upgrade_row').css('display','block');
+				//$('.unconverted_row').css('display','none');
+			}else{
+				$('.upgrade_row').css('display','none');
+				//$('.unconverted_row').css('display','block');
+			}
+		});
+
+		$('input[name=is_upgrade_edit]').change(function(){
+			var value = $( 'input[name=is_upgrade_edit]:checked' ).val();
+			if(value == 1){
+				$('.upgrade_row_edit').css('display','block');
+				//$('.unconverted_row').css('display','none');
+			}else{
+				$('.upgrade_row_edit').css('display','none');
+				//$('.unconverted_row').css('display','block');
 			}
 		});
 
@@ -1474,6 +1613,101 @@
 		  	$('.method_details_cashier_cheque').css('display','none');
 		  	$('.method_details_credit_card').css('display','none');
 		  	$('.method_details_prepaid_card').css('display','block');
+		  }else{
+		  	$('.method_details_echecks').css('display','none');
+		  	$('.method_details_physical_cheque').css('display','none');
+		  	$('.method_details_interac').css('display','none');
+		  	$('.method_details_zille').css('display','none');
+		  	$('.method_details_money_order').css('display','none');
+		  	$('.method_details_cashier_cheque').css('display','none');
+		  	$('.method_details_prepaid_card').css('display','none');
+		  	$('.method_details_credit_card').css('display','none');
+		  }
+		});
+
+		$('#payment_method_edit_select').on('change', function() {
+		  var id = this.value;
+		  if(id == 1){
+		  	$('.method_details_echecks_edit').css('display','none');
+		  	$('.method_details_physical_cheque_edit').css('display','none');
+		  	$('.method_details_interac_edit').css('display','none');
+		  	$('.method_details_zille_edit').css('display','none');
+		  	$('.method_details_money_order_edit').css('display','none');
+		  	$('.method_details_cashier_cheque_edit').css('display','none');
+		  	$('.method_details_prepaid_card_edit').css('display','none');
+		  	$('.method_details_credit_card_edit').css('display','block');
+		  }else if(id == 2){
+		  	$('.method_details_physical_cheque_edit').css('display','none');
+		  	$('.method_details_interac_edit').css('display','none');
+		  	$('.method_details_zille_edit').css('display','none');
+		  	$('.method_details_money_order_edit').css('display','none');
+		  	$('.method_details_cashier_cheque_edit').css('display','none');
+		  	$('.method_details_prepaid_card_edit').css('display','none');
+		  	$('.method_details_credit_card_edit').css('display','none');
+		  	$('.method_details_echecks_edit').css('display','block');
+		  }else if(id == 3){
+		  	$('.method_details_echecks_edit').css('display','none');
+		  	$('.method_details_interac_edit').css('display','none');
+		  	$('.method_details_zille_edit').css('display','none');
+		  	$('.method_details_money_order_edit').css('display','none');
+		  	$('.method_details_cashier_cheque_edit').css('display','none');
+		  	$('.method_details_prepaid_card_edit').css('display','none');
+		  	$('.method_details_credit_card_edit').css('display','none');
+		  	$('.method_details_physical_cheque_edit').css('display','block');
+		  }else if(id == 4){
+		  	$('.method_details_echecks_edit').css('display','none');
+		  	$('.method_details_physical_cheque_edit').css('display','none');
+		  	$('.method_details_zille_edit').css('display','none');
+		  	$('.method_details_money_order_edit').css('display','none');
+		  	$('.method_details_cashier_cheque_edit').css('display','none');
+		  	$('.method_details_prepaid_card_edit').css('display','none');
+		  	$('.method_details_credit_card_edit').css('display','none');
+		  	$('.method_details_interac_edit').css('display','block');
+		  }else if(id == 5){
+		  	$('.method_details_echecks_edit').css('display','none');
+		  	$('.method_details_physical_cheque_edit').css('display','none');
+		  	$('.method_details_interac_edit').css('display','none');
+		  	$('.method_details_money_order_edit').css('display','none');
+		  	$('.method_details_cashier_cheque_edit').css('display','none');
+		  	$('.method_details_prepaid_card_edit').css('display','none');
+		  	$('.method_details_credit_card_edit').css('display','none');
+		  	$('.method_details_zille_edit').css('display','block');
+		  }else if(id == 6){
+		  	$('.method_details_echecks_edit').css('display','none');
+		  	$('.method_details_physical_cheque_edit').css('display','none');
+		  	$('.method_details_interac_edit').css('display','none');
+		  	$('.method_details_zille_edit').css('display','none');
+		  	$('.method_details_cashier_cheque_edit').css('display','none');
+		  	$('.method_details_prepaid_card_edit').css('display','none');
+		  	$('.method_details_credit_card_edit').css('display','none');
+		  	$('.method_details_money_order_edit').css('display','block');
+		  }else if(id == 7){
+		  	$('.method_details_echecks_edit').css('display','none');
+		  	$('.method_details_physical_cheque_edit').css('display','none');
+		  	$('.method_details_interac_edit').css('display','none');
+		  	$('.method_details_zille_edit').css('display','none');
+		  	$('.method_details_money_order_edit').css('display','none');
+		  	$('.method_details_prepaid_card_edit').css('display','none');
+		  	$('.method_details_credit_card_edit').css('display','none');
+		  	$('.method_details_cashier_cheque_edit').css('display','block');
+		  }else if(id == 8){
+		  	$('.method_details_echecks_edit').css('display','none');
+		  	$('.method_details_physical_cheque_edit').css('display','none');
+		  	$('.method_details_interac_edit').css('display','none');
+		  	$('.method_details_zille_edit').css('display','none');
+		  	$('.method_details_money_order_edit').css('display','none');
+		  	$('.method_details_cashier_cheque_edit').css('display','none');
+		  	$('.method_details_credit_card_edit').css('display','none');
+		  	$('.method_details_prepaid_card_edit').css('display','block');
+		  }else{
+		  	$('.method_details_echecks_edit').css('display','none');
+		  	$('.method_details_physical_cheque_edit').css('display','none');
+		  	$('.method_details_interac_edit').css('display','none');
+		  	$('.method_details_zille_edit').css('display','none');
+		  	$('.method_details_money_order_edit').css('display','none');
+		  	$('.method_details_cashier_cheque_edit').css('display','none');
+		  	$('.method_details_prepaid_card_edit').css('display','none');
+		  	$('.method_details_credit_card_edit').css('display','none');
 		  }
 		});
 	</script>
